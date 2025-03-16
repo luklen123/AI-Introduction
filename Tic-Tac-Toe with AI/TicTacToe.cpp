@@ -4,7 +4,7 @@ using namespace std;
 #define f first
 #define s second
 #define INF 1000
-#define -INF -1000
+#define NINF -1000
 
 int counter, x, y, licznik, next_player, winner, game_board[3][3];
 bool finished;
@@ -74,7 +74,7 @@ int minimax(int player, bool isMaximizing, int alpha, int beta){
         return -1;
     }
     if(isMaximizing){
-        int bestScore = -INF;
+        int bestScore = NINF;
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
                 if(game_board[j][i] == 0){
@@ -106,13 +106,13 @@ int minimax(int player, bool isMaximizing, int alpha, int beta){
 }
 
 void AIMove(int player){
-    int bestResult = -1000; // -infinity
+    int bestResult = NINF; 
     pair<int,int> bestMove;
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
             if(game_board[j][i] == 0){
                 game_board[j][i] = player;
-                int result = minimax(player,false, -INF, INF);
+                int result = minimax(player,false, NINF, INF);
                 game_board[j][i] = 0;
                 if(result > bestResult){
                     bestResult = result;
